@@ -13,5 +13,8 @@ new Vue({
   router,
   data: { state: store.state },
   template: '<App/>',
-  components: { App }
+  components: { App },
+  created() {
+    store.initFromLocalStorage()
+  }
 })

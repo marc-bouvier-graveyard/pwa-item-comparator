@@ -2,10 +2,12 @@ import Vue from 'vue'
 export default {
   addFeatureType(featureType) {
     let id = featureType.id
-    Vue.set(this.state, id, featureType)
+    Vue.set(this.state.featureTypes, id, featureType)
+    this.set('featureTypes', this.state.featureTypes)
   },
   addItem(item) {
     this.state.items.push(item)
+    this.set('items', this.state.items)
   },
   initFromLocalStorage() {
     this.state.items = this.get('items', [])
