@@ -36,7 +36,13 @@ export default {
       label: "SSD Crucial BX300 120 Go (2,5 pouces / 7mm)",
       brand: "Crucial",
       url: "http://www.crucial.fr/fra/fr/latitude-e6510/CT10217487",
-      price: "61.19 €",
+      price: {
+        amount: 61.19,
+        currency: {
+          isoCode: 'EUR',
+          unit: '€'
+        }
+      },
       features: {
         updateFor: "Dell Latitude E6510",
         driveSize: "2.5 inches",
