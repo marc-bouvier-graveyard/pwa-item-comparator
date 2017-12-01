@@ -18,18 +18,42 @@
     <div>
       <label>value</label><input type="text"/>
     </div>
-  </div>
+    <button v-on:click="dumpState">Log state</button>
+    <button v-on:click="saveState">Save state</button>
+    <a id="saveStateLink" download='state.json' :href="stateData" style="display:none"></a>
+    <iframe id="saveStateFrame" style="display:none"></iframe>
   </div>
 </template>
 
 <script>
+import store from "../store";
 export default {
-  name: 'the_admin',
-  data () {
+  name: "the_admin",
+  data() {
     return {
+      items: this.$root.state.items,
+      featureTypes: this.$root.state.featureTypes,
+      stateData: null
+    };
+  },
+  methods: {
+    addFeatureType() {
+      store.addFeatureType({ id: new Date().getTime() });
+    },
+    dumpState() {
+      console.log(store.dumpState());
+    },
+    saveState() {
+      const dumpedState = store.dumpState();
+      this.stateData =
+        "data:application/json;charset=utf-8," +
+        encodeURIComponent(dumpedState);
+      this.$nextTick(function() {
+        document.getElementById("saveStateLink").click();
+      });
     }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

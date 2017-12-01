@@ -11,7 +11,8 @@ export default {
   },
   initFromLocalStorage() {
     this.state.items = this.get('items', [])
-    this.state.featureTypes = this.get(('featureTypes', {}))
+
+    this.state.featureTypes = this.get('featureTypes', {})
   },
   get(id, defaultValue) {
     let value = localStorage.getItem(id)
@@ -25,6 +26,9 @@ export default {
   },
   remove(id) {
     localStorage.removeItem(id)
+  },
+  dumpState() {
+    return (JSON.stringify(this.state, null, 2))
   },
   state: {
     items: [{
