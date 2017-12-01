@@ -4,7 +4,12 @@
       <span>Vue.js PWA</span>
     </header>
     <main>
-      <img src="./assets/logo.png" alt="Vue.js PWA">
+      <h2>Essential Links</h2>
+      <ul>
+        <li><a href="/#" rel="noopener">Home</a></li>
+        <li><a href="/#/admin" rel="noopener">Admin</a></li>
+        <li><a href="/#/comparator"  rel="noopener">Comparateur</a></li>
+      </ul>
       <router-view></router-view>
     </main>
   </div>
@@ -12,8 +17,8 @@
 
 <script>
 export default {
-  name: 'app'
-}
+  name: "app"
+};
 </script>
 
 <style>
@@ -22,7 +27,7 @@ body {
 }
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
@@ -37,7 +42,7 @@ header {
   margin: 0;
   height: 56px;
   padding: 0 16px 0 24px;
-  background-color: #35495E;
+  background-color: #35495e;
   color: #ffffff;
 }
 
@@ -46,7 +51,7 @@ header span {
   position: relative;
   font-size: 20px;
   line-height: 1;
-  letter-spacing: .02em;
+  letter-spacing: 0.02em;
   font-weight: 400;
   box-sizing: border-box;
   padding-top: 16px;

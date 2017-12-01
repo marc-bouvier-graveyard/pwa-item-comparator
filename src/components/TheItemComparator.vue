@@ -12,11 +12,12 @@
     
     </tbody>
     </table>
+    <button v-on:click="addItem">Add item</button>
   </div>
-  
 </template>
 
 <script>
+import store from "../store";
 export default {
   name: "the_item_comparator",
   computed: {
@@ -26,9 +27,29 @@ export default {
         rowHeader: this.headerFromItems(this.items),
         rowFeatures: this.rowsFromItems(this.items)
       };
+    },
+    items() {
+      return this.$root.state.items;
     }
   },
   methods: {
+    addItem() {
+      store.addItem({
+        id: new Date().getTime(),
+        label: new Date().toDateString(),
+        brand: "Crucial",
+        url: "http://www.crucial.fr/fra/fr/latitude-e6510/CT10134829",
+        price: "89.99 €",
+        features: {
+          updateFor: "Dell Latitude E6510",
+          driveSize: "2.5 inches",
+          driveTechnology: "SSD",
+          driveCapacity: "240 Gb",
+          driveSerial: "CT10134829",
+          driveSeries: "BX300"
+        }
+      });
+    },
     headerFromItems(selectedItems) {
       let rowHeader = [{}];
       for (let item of selectedItems) {
@@ -71,40 +92,7 @@ export default {
     }
   },
   data() {
-    return {
-      items: [
-        {
-          id: "1",
-          label: "SSD Crucial BX300 120 Go (2,5 pouces / 7mm)",
-          brand: "Crucial",
-          url: "http://www.crucial.fr/fra/fr/latitude-e6510/CT10217487",
-          price: "61.19 €",
-          features: {
-            updateFor: "Dell Latitude E6510",
-            driveSize: "2.5 inches",
-            driveTechnology: "SSD",
-            driveCapacity: "120 Gb",
-            driveSerial: "CT10217487",
-            driveSeries: "BX300"
-          }
-        },
-        {
-          id: "2",
-          label: "SSD Crucial BX300 240 Go (2,5 pouces / 7mm)",
-          brand: "Crucial",
-          url: "http://www.crucial.fr/fra/fr/latitude-e6510/CT10134829",
-          price: "89.99 €",
-          features: {
-            updateFor: "Dell Latitude E6510",
-            driveSize: "2.5 inches",
-            driveTechnology: "SSD",
-            driveCapacity: "240 Gb",
-            driveSerial: "CT10134829",
-            driveSeries: "BX300"
-          }
-        }
-      ]
-    };
+    return {};
   }
 };
 </script>
