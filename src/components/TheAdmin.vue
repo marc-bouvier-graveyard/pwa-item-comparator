@@ -16,13 +16,16 @@
       <template v-if="newFeatureTypeVisible">
         <label>code</label><input type="text" v-model="newFeatureType.code"/>
         <label>label</label><input type="text" v-model="newFeatureType.label"/>
+        <label>type</label>
+        <select v-model="newFeatureType.type">
+          <option v-for="featureTypeType of featureTypeTypes" 
+          :key="featureTypeType.code" :value="featureTypeType.code">{{featureTypeType.label}}</option>
+        </select>
         <button :click="createFeatureType">Create</button>
       </template>
       <template v-else>
         <label>type</label><select><option>String</option><option>Euro</option></select>
       </template>
-      
-      
     </div>
     <div>
       <label>value</label><input type="text"/>
@@ -46,11 +49,14 @@ export default {
       items: this.$root.state.items,
       itemTypes: this.$root.state.itemTypes,
       featureTypes: this.$root.state.featureTypes,
+      featureTypeTypes: this.$root.state.featureTypeTypes,
+      currencies: this.$root.state.currencies,
       stateData: null,
       newFeatureTypeVisible: false,
       newFeatureType: {
         code: null,
-        label: null
+        label: null,
+        type: null
       },
       newItemTypeVisible: false,
       newItemType: {
@@ -77,7 +83,8 @@ export default {
     resetNewFeatureType() {
       Vue.set(this.newFeatureType, {
         code: null,
-        label: null
+        label: null,
+        type: null
       });
       this.newFeatureTypeVisible = false;
     },

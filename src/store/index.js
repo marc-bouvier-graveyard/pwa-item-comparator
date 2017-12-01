@@ -31,6 +31,26 @@ export default {
     return (JSON.stringify(this.state, null, 2))
   },
   state: {
+    featureTypeTypes: [{
+      code: 'text',
+      type: 'string',
+      label: 'Text'
+    }, {
+      code: 'integer',
+      type: 'number',
+      label: 'Integer'
+    }, {
+      code: 'centimeter',
+      type: 'number',
+      label: 'Centimeter',
+      unit: 'cm'
+    }, {
+      code: 'inch',
+      type: 'number',
+      label: 'Inch',
+      unit: '\\"'
+    }],
+    currencies: [{ isoCode: 'EUR', label: 'euro', unit: '€' }],
     items: [{
       id: "1",
       label: "SSD Crucial BX300 120 Go (2,5 pouces / 7mm)",
