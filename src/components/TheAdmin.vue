@@ -3,16 +3,9 @@
     Admin
     <div><button >New item</button></div>
     <div><button>Add feature</button></div>
-    <div><label>Feature</label>
-      <select>
-        <option></option>
-        <option>Feature</option>
-      </select>
-    </div>
-    <div>
-      <label>Feature type</label>
-      <label></label>
-      <input type="checkbox" v-model="newFeatureTypeVisible"/>
+    <div><label>Feature type</label>
+      (<label>New</label>
+      <input type="checkbox" v-model="newFeatureTypeVisible"/>)
       <template v-if="newFeatureTypeVisible">
         <label>code</label><input type="text" v-model="newFeatureType.code"/>
         <label>label</label><input type="text" v-model="newFeatureType.label"/>
@@ -24,9 +17,12 @@
         <button :click="createFeatureType">Create</button>
       </template>
       <template v-else>
-        <label>type</label><select><option>String</option><option>Euro</option></select>
+        <select v-model="newFeature.featureTypeCode">
+          <option v-for="featureType of featureTypes" 
+        :key="featureType.code" 
+        :value="featureType.code">{{featureType.label}}</option></select>
       </template>
-    </div>
+    </div> 
     <div>
       <label>value</label><input type="text"/>
     </div>
@@ -52,6 +48,11 @@ export default {
       featureTypeTypes: this.$root.state.featureTypeTypes,
       currencies: this.$root.state.currencies,
       stateData: null,
+      newFeatureVisible: false,
+      newFeature: {
+        featureTypeCode: null,
+        value: null
+      },
       newFeatureTypeVisible: false,
       newFeatureType: {
         code: null,

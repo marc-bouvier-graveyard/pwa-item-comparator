@@ -10,9 +10,11 @@ export default {
     this.set('items', this.state.items)
   },
   initFromLocalStorage() {
-    this.state.items = this.get('items', [])
-
-    this.state.featureTypes = this.get('featureTypes', {})
+    this.state.items = this.get('items', !this.exists('items') ? this.state.items : [])
+    this.state.featureTypes = this.get('featureTypes', !this.exists('items') ? this.state.featureTypes : {})
+  },
+  exists(id) {
+    return localStorage.getItem(id) !== null
   },
   get(id, defaultValue) {
     let value = localStorage.getItem(id)
@@ -31,7 +33,16 @@ export default {
     return (JSON.stringify(this.state, null, 2))
   },
   state: {
+    featureTypes: [
+      {
+        code: 'ssd',
+        label: 'Solid-State Drive'
+      }],
     featureTypeTypes: [{
+      code: 'none',
+      type: 'undefined',
+      label: 'None'
+    }, {
       code: 'text',
       type: 'string',
       label: 'Text'
@@ -86,7 +97,6 @@ export default {
         driveSerial: "CT10134829",
         driveSeries: "BX300"
       }
-    }],
-    featureTypes: {}
+    }]
   }
 }
